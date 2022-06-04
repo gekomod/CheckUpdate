@@ -30,19 +30,26 @@ namespace CheckUpdate
         }
 
         public static bool zipExtractFinished = false;
+
         public static async void ExtractZip(string zipToExtract, string directory)
         {
             await Task.Run(() =>
             {
                 using (var zip = ZipFile.Read(zipToExtract))
                 {
+                    int ile = zip.Count;
+                    int fileIndex = 0;
+                    Var.ile_plikow = ile;
+                    Var.ileile = zip.Count;
                     //zip.ExtractProgress += ExtractProgress;
                     zip.ExtractProgress += zip_ExtractProgress;
-                    zip.ExtractAll(directory, ExtractExistingFileAction.OverwriteSilently);
+                    //zip.ExtractAll(directory, ExtractExistingFileAction.OverwriteSilently);
                     foreach (var e in zip)
                     {
+                        fileIndex++;
                         Var.info = zipExtractFinished;
-                        //e.Extract(directory, ExtractExistingFileAction.OverwriteSilently);
+                        e.Extract(directory, ExtractExistingFileAction.OverwriteSilently);
+                        Var.ileile1 = fileIndex;
                     }
                 }
             }).ContinueWith(t =>
@@ -55,6 +62,12 @@ namespace CheckUpdate
 
         static void zip_ExtractProgress(object sender, ExtractProgressEventArgs e)
         {
+
+            if (e.EventType == ZipProgressEventType.Extracting_BeforeExtractEntry)
+            {
+                Var.ileile = e.EntriesTotal;
+            }
+
             if (e.EventType == ZipProgressEventType.Extracting_EntryBytesWritten)
             {
                 Var.infoProgress = (int)((e.BytesTransferred * 100) / e.TotalBytesToTransfer);

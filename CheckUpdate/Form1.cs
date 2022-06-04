@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.Diagnostics;
 using System.IO;
 using System.Net;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using static Sdcard;
@@ -45,8 +46,17 @@ namespace CheckUpdate
 
         public Var()
         {
+            Thread s = new Thread(new ThreadStart(StartScreenForm));
+            s.Start();
+            Thread.Sleep(5000);
             InitializeComponent();
+            s.Abort();
             detect_sdcard();
+        }
+
+        public void StartScreenForm()
+        {
+            Application.Run(new StartScreen());
         }
 
         private void materialTabSelector1_Click(object sender, EventArgs e)
@@ -160,6 +170,23 @@ namespace CheckUpdate
                 Select_function.Visible = true;
                 select_firmware.Visible = true;
                 sel_firm.Visible = true;
+            }
+
+            if (radiob3.Checked)
+            {
+                operation = radiob3.Text;
+                what.Visible = true;
+                select_firmware.Visible = false;
+                sel_firm.Visible = false;
+                install_green();
+            }
+            //your code
+        }
+
+        private void next_Click(object sender, EventArgs e)
+        {
+            if (radiob2.Checked)
+            {
                 selected_sfotware_bottom = (string)select_firmware.SelectedItem;
                 selected_software.Text = selected_sfotware_bottom;
                 if (selected_sfotware_bottom == null)
@@ -176,23 +203,8 @@ namespace CheckUpdate
                     install_firmware();
                     next.Visible = true;
                 }
-
             }
-
-            if (radiob3.Checked)
-            {
-                operation = radiob3.Text;
-                what.Visible = true;
-                select_firmware.Visible = false;
-                sel_firm.Visible = false;
-                install_green();
-            }
-            //your code
-        }
-
-        private void next_Click(object sender, EventArgs e)
-        {            
-            if(sdcard_format.Checked)
+            if (sdcard_format.Checked)
             {
                 Format();
             }
@@ -328,10 +340,15 @@ namespace CheckUpdate
         public static bool info;
         internal static int infoProgress;
         internal static string infoFileName;
+        internal static int ile_plikow;
+        internal static int ileile;
+        internal static int ileile1;
 
         private void timeElapsed(object sender, EventArgs e)
         {
-            progressInstall.Value = infoProgress;
+            progressInstall.Maximum = ile_plikow;
+            progressInstall.Value = ileile1;
+            //progressInstall.Value = infoProgress;
             infoFileName_label.Text = infoFileName;
             if (info == false)
             {

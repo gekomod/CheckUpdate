@@ -14,6 +14,9 @@
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
     <PublishUrl>publikuj\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
@@ -26,11 +29,8 @@
     <MapFileExtensions>true</MapFileExtensions>
     <ApplicationRevision>0</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
-    <IsWebBootstrapper>false</IsWebBootstrapper>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
-    <NuGetPackageImportStamp>
-    </NuGetPackageImportStamp>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -60,6 +60,9 @@
   <PropertyGroup>
     <ApplicationManifest>Properties\app.manifest</ApplicationManifest>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>pobrane.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="DialogFramework, Version=1.0.43.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\DialogFramework.1.0.43\lib\netstandard2.0\DialogFramework.dll</HintPath>
@@ -72,9 +75,6 @@
     </Reference>
     <Reference Include="Jint, Version=0.0.0.0, Culture=neutral, PublicKeyToken=2e92ba9c8d81157f, processorArchitecture=MSIL">
       <HintPath>..\packages\Jint.2.11.58\lib\net451\Jint.dll</HintPath>
-    </Reference>
-    <Reference Include="Material.Icons, Version=1.0.105.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Material.Icons.1.0.105\lib\netstandard2.0\Material.Icons.dll</HintPath>
     </Reference>
     <Reference Include="MaterialSkin, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\MaterialSkin.0.2.1\lib\MaterialSkin.dll</HintPath>
@@ -179,6 +179,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="format.cs" />
+    <Compile Include="StartScreen.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="StartScreen.Designer.cs">
+      <DependentUpon>StartScreen.cs</DependentUpon>
+    </Compile>
     <Compile Include="unzip.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
@@ -200,7 +206,11 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="StartScreen.resx">
+      <DependentUpon>StartScreen.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="unzip.resx">
       <DependentUpon>unzip.cs</DependentUpon>
     </EmbeddedResource>
@@ -237,6 +247,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="content\bootstrap-dialog.css" />
+    <None Include="Resources\vw-volkswagen-logo-volkswagen-jetta-vw-jetta-tdi-vw-logo-splash-11562949067vd0l11xjzh.png" />
+    <None Include="Resources\144-1448714_volkswagen-logo-png-free-download-emblem-transparent-png.png" />
+    <Content Include="pobrane.ico" />
     <Content Include="scripts\bootstrap-dialog.js" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

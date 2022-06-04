@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Var));
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.sdcard_detect = new System.Windows.Forms.ToolStripStatusLabel();
             this.ver2 = new System.Windows.Forms.ToolStripStatusLabel();
@@ -201,7 +202,6 @@
             // radiob2
             // 
             this.radiob2.AutoSize = true;
-            this.radiob2.CheckedChanged += menu_CheckedChanged;
             this.radiob2.CheckAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.radiob2.Depth = 0;
             this.Select_function.SetFlowBreak(this.radiob2, true);
@@ -216,11 +216,11 @@
             this.radiob2.TabIndex = 10;
             this.radiob2.Text = "Aktualizacja Firmware";
             this.radiob2.UseVisualStyleBackColor = true;
+            this.radiob2.CheckedChanged += new System.EventHandler(this.menu_CheckedChanged);
             // 
             // radiob1
             // 
             this.radiob1.AutoSize = true;
-            this.radiob1.CheckedChanged += menu_CheckedChanged;
             this.radiob1.CheckAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.radiob1.Depth = 0;
             this.Select_function.SetFlowBreak(this.radiob1, true);
@@ -235,12 +235,12 @@
             this.radiob1.TabIndex = 11;
             this.radiob1.Text = "Aktualizacja Map";
             this.radiob1.UseVisualStyleBackColor = true;
+            this.radiob1.CheckedChanged += new System.EventHandler(this.menu_CheckedChanged);
             // 
             // radiob3
             // 
             this.radiob3.AutoSize = true;
             this.radiob3.BackColor = System.Drawing.SystemColors.Window;
-            this.radiob3.CheckedChanged += menu_CheckedChanged;
             this.radiob3.CheckAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.radiob3.Depth = 0;
             this.Select_function.SetFlowBreak(this.radiob3, true);
@@ -255,6 +255,7 @@
             this.radiob3.TabIndex = 12;
             this.radiob3.Text = "Wgraj Green Menu na kartę";
             this.radiob3.UseVisualStyleBackColor = false;
+            this.radiob3.CheckedChanged += new System.EventHandler(this.menu_CheckedChanged);
             // 
             // next
             // 
@@ -286,7 +287,7 @@
             this.Select_function.Controls.Add(this.radiob2);
             this.Select_function.Controls.Add(this.radiob3);
             this.Select_function.Controls.Add(this.sdcard_format);
-            this.Select_function.Location = new System.Drawing.Point(0, 404);
+            this.Select_function.Location = new System.Drawing.Point(4, 404);
             this.Select_function.Name = "Select_function";
             this.Select_function.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.Select_function.Size = new System.Drawing.Size(361, 120);
@@ -393,7 +394,12 @@
             "MST2_EU_VW_PQ_P0478T.zip",
             "MST2_EU_VW_PQ_P0480T-3G0919360QT.zip",
             "----SKÓRKI----",
-            "VW_PQ_gold_skin_0478_CP_removed.zip"});
+            "VW_PQ_gold_skin_0478_CP_removed.zip",
+            "PQ_AlpineSkins_WithCP.zip",
+            "----PATCH----",
+            "VW_PQ_P0254T_FEC_ALL_CID_OFF_CP_OFF_FIXED.zip",
+            "VW_PQ_P0254T_FEC_ALL_CID_OFF_FIXED.zip",
+            "VW_PQ_P0480T_FEC_ALL_CID_OFF_FIXED.zip"});
             this.select_firmware.Location = new System.Drawing.Point(548, 470);
             this.select_firmware.Name = "select_firmware";
             this.select_firmware.Size = new System.Drawing.Size(235, 21);
@@ -508,6 +514,7 @@
             this.Controls.Add(this.miejsca);
             this.Controls.Add(this.checkSDid);
             this.Controls.Add(this.statusStrip1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Var";
             this.Text = "Discovery Media - Maps - Firmware Update";
             this.Load += new System.EventHandler(this.Form1_Load);
